@@ -27,7 +27,6 @@ public class ProjectileCasting : CastingStrategy
         if (castInstance == null && spell.spellProperties.castVFX != null)
         {
             castInstance = GameObject.Instantiate(spell.spellProperties.castVFX, castingManager.transform.position, Quaternion.identity);
-            
         }
     }
     public override void OnPerformHold()

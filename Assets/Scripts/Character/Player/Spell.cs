@@ -12,6 +12,10 @@ public class Spell
     [Header("Casting Strategy")]
     [SerializeReference, SubclassSelector] CastingStrategy castingStrategy;
 
+    [Header("Casting Control")]
+    public bool canMoveWhileCasting = false;
+    public bool canRotateWhileCasting = true;
+
 
 
     // Called when button is pressed
@@ -57,6 +61,7 @@ public class Spell
         {
             GameObject currentSpellVFX = GameObject.Instantiate(spellProperties.spellVFX, origin.position, Quaternion.identity);
             GameObject.Destroy(currentSpellVFX , spellProperties.spellDuration);
+            
         }
         
     }

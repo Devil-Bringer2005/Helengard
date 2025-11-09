@@ -18,7 +18,6 @@ public class SpellCaster : MonoBehaviour
     }
 
     // Test implementation of skill selector using D pad
-
     public void SkillSelector(int index)
     {
         if (index < Spells.Length)
@@ -31,7 +30,13 @@ public class SpellCaster : MonoBehaviour
     // Public Methods used along with player inputmanager for activating Spell methods like (StartCast , PerformCast , ReleaseCast)
     // For now we only cast the firt (0th) spell in the list 
     public void OnCastStart()
-    { 
+    {
+
+        // Apply spell movement rules
+        player.canMove = currentSpell.canMoveWhileCasting;
+        player.canRotate = currentSpell.canRotateWhileCasting;
+        player.isCasting = true;
+
         currentSpell.StartCast(castingManager);
     }
 
@@ -42,6 +47,11 @@ public class SpellCaster : MonoBehaviour
 
     public void OnCastRelease()
     {
+        // Reset player state
+        player.canMove = true;
+        player.canRotate = true;
+        player.isCasting = false;
+
         currentSpell.ReleaseCast();
         currentSpell = null;
     }

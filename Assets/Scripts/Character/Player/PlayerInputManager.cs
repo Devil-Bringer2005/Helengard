@@ -209,7 +209,7 @@ namespace GS
 
         private void HandleSpellInput()
         {
-
+            // Later on i will control the bools canMove and canRotate in spells itself
             // When spell input starts
 
             if (spellInput && !player.isCasting)
