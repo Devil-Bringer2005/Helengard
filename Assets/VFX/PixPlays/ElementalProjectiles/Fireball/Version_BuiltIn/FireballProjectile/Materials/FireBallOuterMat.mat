@@ -128,7 +128,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaBoost: 10.65
+    - _AlphaBoost: 8
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _BUILTIN_AlphaClip: 0
@@ -208,7 +208,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_1: {r: 80.3465, g: 5.813649, b: 1.8949642, a: 0}
+    - _Color_1: {r: 11.984311, g: 0.86715144, b: 0.2826488, a: 0}
     - _Color_2: {r: 0.16037738, g: 0, b: 0.010691815, a: 0}
     - _Color_Remap: {r: 0, g: 1, b: 0, a: 0}
     - _Color_Scroll: {r: 0, g: 0, b: 0, a: 0}

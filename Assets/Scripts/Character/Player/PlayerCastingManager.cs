@@ -5,18 +5,27 @@ public class PlayerCastingManager : CharacterCastingManager
 {
 
     [HideInInspector] public PlayerManager player;
-    protected override void Start()
+    public override void Start()
     {
         base.Start();
         player = GetComponent<PlayerManager>();
        
     }
 
-    protected override void Update()
+    public override void Update()
     {
         base.Update();
        
     }
 
+    public override void ClearCurrentStrategy()
+    {
+        base.ClearCurrentStrategy();
+    }
+
+    public override void SetCurrentStrategy(CastingStrategy strategy)
+    {
+        base.SetCurrentStrategy(strategy);
+    }
    
 }

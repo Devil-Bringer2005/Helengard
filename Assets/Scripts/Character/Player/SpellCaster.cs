@@ -17,26 +17,34 @@ public class SpellCaster : MonoBehaviour
         castingManager = GetComponent<CharacterCastingManager>();
     }
 
-    // Public Methods used along with player inputmanager for activating Spell methods like (StartCast , PerformCast , ReleaseCast)
-   
+    // Test implementation of skill selector using D pad
 
-    public void OnCastStart()
+    public void SkillSelector(int index)
     {
-        currentSpell = Spells[0];
+        if (index < Spells.Length)
+        {
+            currentSpell = Spells[index]; // Select the skill based on index
+
+        }
+    }
+
+    // Public Methods used along with player inputmanager for activating Spell methods like (StartCast , PerformCast , ReleaseCast)
+    // For now we only cast the firt (0th) spell in the list 
+    public void OnCastStart()
+    { 
         currentSpell.StartCast(castingManager);
     }
 
     public void OnCastPerform()
-    {
-        currentSpell = Spells[0];
+    {   
         currentSpell.PerformCast();
     }
 
     public void OnCastRelease()
     {
-        currentSpell = Spells[0];
         currentSpell.ReleaseCast();
+        currentSpell = null;
     }
 
-
+    // also i need to manage what the current spell is in each state of input
 }

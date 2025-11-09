@@ -26,6 +26,7 @@ namespace GS
         [SerializeField] private bool sprintInput = false;
         [SerializeField] private bool jumpInput = false;
         [SerializeField] private bool spellInput = false;
+        [SerializeField] private int skillIndex = 0;
 
 
         private void Awake()
@@ -33,7 +34,6 @@ namespace GS
             if (instance == null)
             {
                 instance = this;
-
             }
             else
             {
@@ -62,6 +62,7 @@ namespace GS
             HandleSprintInput();
             HandleJumpInput();
             HandleSpellInput();
+            HandleSkillSelectionInput();
         }
 
         private void OnSceneChange(Scene oldScene, Scene newScene)
@@ -118,6 +119,12 @@ namespace GS
 
                 playerControls.PlayerActions.MagicCircle.performed += i => spellInput = true;
                 playerControls.PlayerActions.MagicCircle.canceled += i => spellInput = false;
+
+                // D PAD INTERACTIONS
+                playerControls.SkillSelection.SkillLeft.performed += i => skillIndex = 0;
+                playerControls.SkillSelection.SkillRight.performed += i => skillIndex = 1;
+                playerControls.SkillSelection.SkillUp.performed += i => skillIndex = 2;
+                playerControls.SkillSelection.SkillDown.performed += i => skillIndex = 3;
             }
 
             playerControls.Enable();
@@ -227,6 +234,12 @@ namespace GS
                 player.spellCaster.OnCastRelease();
 
             }
+        }
+
+        private void HandleSkillSelectionInput()
+        {
+            // here we use D pad to select the spell or skill we want to use
+            player.spellCaster.SkillSelector(skillIndex);
         }
 
 

@@ -430,6 +430,94 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Skill Selection"",
+            ""id"": ""8b8290d4-9722-48cd-856d-1f53dc3ee00c"",
+            ""actions"": [
+                {
+                    ""name"": ""Skill Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""81280948-18ab-4dd7-b548-bc02d105fabb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""61e21b6a-e768-4ad6-a69d-5e38fd21ca4b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb3bdee7-e1a8-46db-9ef8-bf50433d13c8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5882985-663e-4e8d-97b7-50483d0a2384"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f6b4ed8b-b73b-45e9-9255-af2f94538b28"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d24f2f33-0c53-46bc-9d34-db05002fb4c1"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89fee7e8-1357-4d84-aa46-73cdad3b2cda"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2864d93e-df18-4e6d-94b5-dddf62b4c5c1"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""UI"",
             ""id"": ""ebe124fc-9577-4e30-ba37-2cb198bc1dcc"",
             ""actions"": [
@@ -960,6 +1048,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_MagicCircle = m_PlayerActions.FindAction("Magic Circle", throwIfNotFound: true);
+        // Skill Selection
+        m_SkillSelection = asset.FindActionMap("Skill Selection", throwIfNotFound: true);
+        m_SkillSelection_SkillLeft = m_SkillSelection.FindAction("Skill Left", throwIfNotFound: true);
+        m_SkillSelection_SkillRight = m_SkillSelection.FindAction("Skill Right", throwIfNotFound: true);
+        m_SkillSelection_SkillUp = m_SkillSelection.FindAction("Skill Up", throwIfNotFound: true);
+        m_SkillSelection_SkillDown = m_SkillSelection.FindAction("Skill Down", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -979,6 +1073,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_PlayerMovement.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerMovement.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PlayerCamera.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerCamera.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PlayerActions.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerActions.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_SkillSelection.enabled, "This will cause a leak and performance issues, PlayerControls.SkillSelection.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
     }
 
@@ -1373,6 +1468,135 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// </summary>
     public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
 
+    // Skill Selection
+    private readonly InputActionMap m_SkillSelection;
+    private List<ISkillSelectionActions> m_SkillSelectionActionsCallbackInterfaces = new List<ISkillSelectionActions>();
+    private readonly InputAction m_SkillSelection_SkillLeft;
+    private readonly InputAction m_SkillSelection_SkillRight;
+    private readonly InputAction m_SkillSelection_SkillUp;
+    private readonly InputAction m_SkillSelection_SkillDown;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Skill Selection".
+    /// </summary>
+    public struct SkillSelectionActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SkillSelectionActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "SkillSelection/SkillLeft".
+        /// </summary>
+        public InputAction @SkillLeft => m_Wrapper.m_SkillSelection_SkillLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "SkillSelection/SkillRight".
+        /// </summary>
+        public InputAction @SkillRight => m_Wrapper.m_SkillSelection_SkillRight;
+        /// <summary>
+        /// Provides access to the underlying input action "SkillSelection/SkillUp".
+        /// </summary>
+        public InputAction @SkillUp => m_Wrapper.m_SkillSelection_SkillUp;
+        /// <summary>
+        /// Provides access to the underlying input action "SkillSelection/SkillDown".
+        /// </summary>
+        public InputAction @SkillDown => m_Wrapper.m_SkillSelection_SkillDown;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_SkillSelection; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SkillSelectionActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SkillSelectionActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SkillSelectionActions" />
+        public void AddCallbacks(ISkillSelectionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SkillSelectionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SkillSelectionActionsCallbackInterfaces.Add(instance);
+            @SkillLeft.started += instance.OnSkillLeft;
+            @SkillLeft.performed += instance.OnSkillLeft;
+            @SkillLeft.canceled += instance.OnSkillLeft;
+            @SkillRight.started += instance.OnSkillRight;
+            @SkillRight.performed += instance.OnSkillRight;
+            @SkillRight.canceled += instance.OnSkillRight;
+            @SkillUp.started += instance.OnSkillUp;
+            @SkillUp.performed += instance.OnSkillUp;
+            @SkillUp.canceled += instance.OnSkillUp;
+            @SkillDown.started += instance.OnSkillDown;
+            @SkillDown.performed += instance.OnSkillDown;
+            @SkillDown.canceled += instance.OnSkillDown;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SkillSelectionActions" />
+        private void UnregisterCallbacks(ISkillSelectionActions instance)
+        {
+            @SkillLeft.started -= instance.OnSkillLeft;
+            @SkillLeft.performed -= instance.OnSkillLeft;
+            @SkillLeft.canceled -= instance.OnSkillLeft;
+            @SkillRight.started -= instance.OnSkillRight;
+            @SkillRight.performed -= instance.OnSkillRight;
+            @SkillRight.canceled -= instance.OnSkillRight;
+            @SkillUp.started -= instance.OnSkillUp;
+            @SkillUp.performed -= instance.OnSkillUp;
+            @SkillUp.canceled -= instance.OnSkillUp;
+            @SkillDown.started -= instance.OnSkillDown;
+            @SkillDown.performed -= instance.OnSkillDown;
+            @SkillDown.canceled -= instance.OnSkillDown;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SkillSelectionActions.UnregisterCallbacks(ISkillSelectionActions)" />.
+        /// </summary>
+        /// <seealso cref="SkillSelectionActions.UnregisterCallbacks(ISkillSelectionActions)" />
+        public void RemoveCallbacks(ISkillSelectionActions instance)
+        {
+            if (m_Wrapper.m_SkillSelectionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SkillSelectionActions.AddCallbacks(ISkillSelectionActions)" />
+        /// <seealso cref="SkillSelectionActions.RemoveCallbacks(ISkillSelectionActions)" />
+        /// <seealso cref="SkillSelectionActions.UnregisterCallbacks(ISkillSelectionActions)" />
+        public void SetCallbacks(ISkillSelectionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SkillSelectionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SkillSelectionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SkillSelectionActions" /> instance referencing this action map.
+    /// </summary>
+    public SkillSelectionActions @SkillSelection => new SkillSelectionActions(this);
+
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
@@ -1632,6 +1856,42 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMagicCircle(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Skill Selection" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SkillSelectionActions.AddCallbacks(ISkillSelectionActions)" />
+    /// <seealso cref="SkillSelectionActions.RemoveCallbacks(ISkillSelectionActions)" />
+    public interface ISkillSelectionActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Skill Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkillLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skill Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkillRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skill Up" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkillUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skill Down" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkillDown(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

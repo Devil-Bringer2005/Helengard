@@ -5,21 +5,21 @@ public class CharacterCastingManager : MonoBehaviour
 
     protected CastingStrategy currentStrategy;
    
-    protected virtual void Start()
+    public virtual void Start()
     {
 
     }
-    protected virtual void Update()
+    public virtual void Update()
     {
        
     }
 
-    protected virtual void SetCurrentStrategy(CastingStrategy strategy)
+    public virtual void SetCurrentStrategy(CastingStrategy strategy)
     {
         currentStrategy = strategy;
     }
 
-    protected virtual void ClearCurrentStrategy()
+    public virtual void ClearCurrentStrategy()
     {
         currentStrategy = null;
     }

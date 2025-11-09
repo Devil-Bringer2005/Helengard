@@ -11,7 +11,7 @@ public class SelfCasting : CastingStrategy
         this.castingManager = castingManager;
 
         // for now i don't have a Idamageable to get from the player so i checking if it has playercasting manager script to identidy if it is player itself then we execute self casting 
-        if(castingManager.transform.TryGetComponent<PlayerCastingManager>(out var target))
+        if (castingManager.transform.TryGetComponent<PlayerCastingManager>(out var target))
         {
             spell.HandleVFXEffects(castingManager.transform);
             Debug.Log("Self cast spell Casted on player");
@@ -20,12 +20,13 @@ public class SelfCasting : CastingStrategy
 
     public override void OnPerformHold()
     {
-        
+
     }
 
     public override void OnReleaseHold()
     {
-        
+       
+
     }
 
     

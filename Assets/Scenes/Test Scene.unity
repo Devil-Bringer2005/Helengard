@@ -1392,6 +1392,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Prototype 01
       objectReference: {fileID: 0}
+    - target: {fileID: 4104829662337150557, guid: fbfc3aa065c06ca47828d7e6082769c2, type: 3}
+      propertyPath: managedReferences[5142980148590018828].projectileSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104829662337150557, guid: fbfc3aa065c06ca47828d7e6082769c2, type: 3}
+      propertyPath: managedReferences[5142980144884875378].groundMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104829662337150557, guid: fbfc3aa065c06ca47828d7e6082769c2, type: 3}
+      propertyPath: managedReferences[5142980148590018828].projectileSpawn.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4184220495730805919, guid: fbfc3aa065c06ca47828d7e6082769c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.044901

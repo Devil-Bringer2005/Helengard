@@ -34,7 +34,6 @@ namespace GS
         protected override void Awake()
         {
             base.Awake();
-
             player = GetComponent<PlayerManager>();
         }
 

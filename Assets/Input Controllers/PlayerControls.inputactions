@@ -344,6 +344,94 @@
             ]
         },
         {
+            "name": "Skill Selection",
+            "id": "8b8290d4-9722-48cd-856d-1f53dc3ee00c",
+            "actions": [
+                {
+                    "name": "Skill Left",
+                    "type": "Button",
+                    "id": "81280948-18ab-4dd7-b548-bc02d105fabb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Skill Right",
+                    "type": "Button",
+                    "id": "61e21b6a-e768-4ad6-a69d-5e38fd21ca4b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Skill Up",
+                    "type": "Button",
+                    "id": "fb3bdee7-e1a8-46db-9ef8-bf50433d13c8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Skill Down",
+                    "type": "Button",
+                    "id": "f5882985-663e-4e8d-97b7-50483d0a2384",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f6b4ed8b-b73b-45e9-9255-af2f94538b28",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d24f2f33-0c53-46bc-9d34-db05002fb4c1",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89fee7e8-1357-4d84-aa46-73cdad3b2cda",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2864d93e-df18-4e6d-94b5-dddf62b4c5c1",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "UI",
             "id": "ebe124fc-9577-4e30-ba37-2cb198bc1dcc",
             "actions": [

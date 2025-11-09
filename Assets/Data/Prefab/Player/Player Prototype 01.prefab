@@ -1027,10 +1027,37 @@ MonoBehaviour:
   - spellProperties: {fileID: 11400000, guid: 8ecbfece8d72fec4cb4de7691dac6a8f, type: 2}
     castingStrategy:
       rid: 8124869357488046276
-  castingManager: {fileID: 8854369086110701090}
+  - spellProperties: {fileID: 11400000, guid: cf4c5dc487e3ba842acccb12f361d3ab, type: 2}
+    castingStrategy:
+      rid: 5142980144884875378
+  - spellProperties: {fileID: 11400000, guid: 49ee8d7b9edc7d047aa3b98b362743a5, type: 2}
+    castingStrategy:
+      rid: 5142980148590018828
+  currentSpell:
+    spellProperties: {fileID: 0}
+    castingStrategy:
+      rid: -2
+  castingManager: {fileID: 0}
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5142980144884875378
+      type: {class: AOECasting, ns: , asm: Assembly-CSharp}
+      data:
+        aoePrefab: {fileID: 2414933790276318355, guid: af4f8f2fbf43e6547bd3b7b904196252, type: 3}
+        moveSpeed: 15
+        maxRange: 25
+        effectRadius: 25
+        groundMask:
+          serializedVersion: 2
+          m_Bits: 0
+    - rid: 5142980148590018828
+      type: {class: ProjectileCasting, ns: , asm: Assembly-CSharp}
+      data:
+        projectileSpeed: 0
+        projectileSpawn: {x: 0, y: 0, z: 0}
     - rid: 8124869357488046276
       type: {class: SelfCasting, ns: , asm: Assembly-CSharp}
       data: 
