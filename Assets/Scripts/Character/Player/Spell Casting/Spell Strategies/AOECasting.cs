@@ -6,7 +6,6 @@ using UnityEngine;
 public class AOECasting : CastingStrategy
 {
     [Header("AOE Settings")]
-    public GameObject aoePrefab;
     public float moveSpeed = 10f;
     public float maxRange = 10f;
     public float effectRadius = 1f;
@@ -27,7 +26,7 @@ public class AOECasting : CastingStrategy
         targetPosition = cameraTransform.position + cameraTransform.forward * 5f;
 
         // Spawn a cast magic circle
-        if (aoePrefab && castInstance == null)
+        if (castInstance == null && spell.spellProperties.castVFX != null)
             castInstance = GameObject.Instantiate(spell.spellProperties.castVFX, targetPosition, Quaternion.identity);
     }
 
@@ -61,11 +60,8 @@ public class AOECasting : CastingStrategy
         if (castInstance)
             GameObject.Destroy(castInstance);
 
-        if (aoePrefab == null)
-            return;
-
         // Spawn final effect
-        GameObject currentAoeVFX = GameObject.Instantiate(aoePrefab, targetPosition, Quaternion.identity);
+        GameObject currentAoeVFX = GameObject.Instantiate(spell.spellProperties.spellVFX, targetPosition, Quaternion.identity);
         GameObject.Destroy(currentAoeVFX, 5f);
     }
 }

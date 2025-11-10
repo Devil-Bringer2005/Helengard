@@ -10,7 +10,7 @@ namespace GS
         [SerializeField] Transform cameraPivotTransform;
 
         [Header("Camera Settings")]
-        private float cameraSmoothSpeed; //  Bigger the number more the time it takes the camera to reach the target
+        [SerializeField] private float cameraSmoothSpeed; //  Bigger the number more the time it takes the camera to reach the target
         [SerializeField] private float leftAndRightRotationSpeed = 220f; // Rotation speed for camera's left and right direction
         [SerializeField] private float upAndDownRotationSpeed = 220f; // Rotation speed for camera's up and down direction
         [SerializeField] private float minimumPivot = -30f; // Lowest point the camera is able to look 
